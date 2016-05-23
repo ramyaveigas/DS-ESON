@@ -5,6 +5,7 @@ package testmodel;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import testmodel.testsubmodel.TestInnerModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,6 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link testmodel.TestModel#getReferenceTestContainer <em>Reference Test Container</em>}</li>
  *   <li>{@link testmodel.TestModel#getAttributeTest <em>Attribute Test</em>}</li>
  *   <li>{@link testmodel.TestModel#getNameAttributeTest <em>Name Attribute Test</em>}</li>
+ *   <li>{@link testmodel.TestModel#getSub <em>Sub</em>}</li>
  * </ul>
  *
  * @see testmodel.TestmodelPackage#getTestModel()
@@ -224,5 +226,31 @@ public interface TestModel extends EObject {
 	 * @generated
 	 */
 	EList<NameAttributeContainer> getNameAttributeTest();
+
+	/**
+	 * Returns the value of the '<em><b>Sub</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Sub</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sub</em>' containment reference.
+	 * @see #setSub(TestInnerModel)
+	 * @see testmodel.TestmodelPackage#getTestModel_Sub()
+	 * @model containment="true"
+	 * @generated
+	 */
+	TestInnerModel getSub();
+
+	/**
+	 * Sets the value of the '{@link testmodel.TestModel#getSub <em>Sub</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sub</em>' containment reference.
+	 * @see #getSub()
+	 * @generated
+	 */
+	void setSub(TestInnerModel value);
 
 } // TestModel

@@ -169,19 +169,35 @@ public class BuilderResyncTest {
 	 */
 	@Test
 	public void testAddNewContainerFeature() throws Exception {
+		testLoadCheckAndSerialize("res/BuilderResyncTests/1TestModelWithNameProperty.efactory",
+				"res/BuilderResyncTests/1TestModelWithNamePropertyEXPECTED.efactory");		
+	}
+
+	/**
+	 * Test package scope when NS URIs are java like packages with dots. Example xxx.yyy.zzz instead of http://xxx.yyy.zzz
+	 * <p>Test is done on sub-package to ensure that it does not only work with main package
+	 */
+	@Test
+	public void testMultiPackageScoping() throws Exception {
+		testLoadCheckAndSerialize("res/BuilderResyncTests/4TestModelWithSubPackage.efactory",
+				"res/BuilderResyncTests/4TestModelWithSubPackageEXPECTED.efactory");
+	}
+
+	private void testLoadCheckAndSerialize(String eFactoryInput, String expectedDSLFile) throws Exception {
 		ResourceProvider resourceProvider = rp.get();
-		EList<EObject> resourceContents = resourceProvider.load("res/BuilderResyncTests/1TestModelWithNameProperty.efactory", true);
+		EList<EObject> resourceContents = resourceProvider.load(eFactoryInput, true);
 
 		// Change the TestModel
 		TestModel testModel = (TestModel) resourceContents.get(1);
-		
+
 		NameAttributeContainer nameAttributeContainer = TestmodelFactory.eINSTANCE.createNameAttributeContainer();
 		// nameAttributeContainer.set...
 		testModel.getNameAttributeTest().add(nameAttributeContainer);
-		
+
 		// Check the EFactory model
 		Factory eFactory = (Factory) resourceContents.get(0);
-		Value efValue = eFactory.getRoot().getFeatures().get(2).getValue();
+		int posLastFeature = eFactory.getRoot().getFeatures().size() - 1;
+		Value efValue = eFactory.getRoot().getFeatures().get(posLastFeature).getValue();
 		MultiValue multiValue = (MultiValue) efValue;
 		Value firstValue = multiValue.getValues().get(0);
 		
@@ -200,10 +216,11 @@ public class BuilderResyncTest {
 		// format it, not in tests and not in real editor UI etc. because one of
 		// the main points of ESON is that it doesn't have to reformat
 		// everything.
-		String expectedDSL = LineEndingUtil.fixLineEndings(resourceProvider.loadAsString("res/BuilderResyncTests/1TestModelWithNamePropertyEXPECTED.efactory"));
+		String expectedDSL = LineEndingUtil.fixLineEndings(resourceProvider.loadAsString(expectedDSLFile));
 		assertEquals(expectedDSL, dsl);
 		checkNodes(eFactory);
 	}
+
 	
 	/**
 	 * Tests that the NodeFixer correctly spaces out (indents) new features

@@ -148,13 +148,22 @@ public interface TestmodelPackage extends EPackage {
 	int TEST_MODEL__NAME_ATTRIBUTE_TEST = 8;
 
 	/**
+	 * The feature id for the '<em><b>Sub</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_MODEL__SUB = 9;
+
+	/**
 	 * The number of structural features of the '<em>Test Model</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_MODEL_FEATURE_COUNT = 9;
+	int TEST_MODEL_FEATURE_COUNT = 10;
 
 	/**
 	 * The meta object id for the '{@link testmodel.impl.ChildImpl <em>Child</em>}' class.
@@ -1040,6 +1049,17 @@ public interface TestmodelPackage extends EPackage {
 	EReference getTestModel_NameAttributeTest();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link testmodel.TestModel#getSub <em>Sub</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Sub</em>'.
+	 * @see testmodel.TestModel#getSub()
+	 * @see #getTestModel()
+	 * @generated
+	 */
+	EReference getTestModel_Sub();
+
+	/**
 	 * Returns the meta object for class '{@link testmodel.Child <em>Child</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1829,6 +1849,14 @@ public interface TestmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST_MODEL__NAME_ATTRIBUTE_TEST = eINSTANCE.getTestModel_NameAttributeTest();
+
+		/**
+		 * The meta object literal for the '<em><b>Sub</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_MODEL__SUB = eINSTANCE.getTestModel_Sub();
 
 		/**
 		 * The meta object literal for the '{@link testmodel.impl.ChildImpl <em>Child</em>}' class.

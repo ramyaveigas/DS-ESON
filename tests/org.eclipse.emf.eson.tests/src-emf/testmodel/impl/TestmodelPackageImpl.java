@@ -331,6 +331,15 @@ public class TestmodelPackageImpl extends EPackageImpl implements TestmodelPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getTestModel_Sub() {
+		return (EReference)testModelEClass.getEStructuralFeatures().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getChild() {
 		return childEClass;
 	}
@@ -940,6 +949,7 @@ public class TestmodelPackageImpl extends EPackageImpl implements TestmodelPacka
 		createEReference(testModelEClass, TEST_MODEL__REFERENCE_TEST_CONTAINER);
 		createEReference(testModelEClass, TEST_MODEL__ATTRIBUTE_TEST);
 		createEReference(testModelEClass, TEST_MODEL__NAME_ATTRIBUTE_TEST);
+		createEReference(testModelEClass, TEST_MODEL__SUB);
 
 		childEClass = createEClass(CHILD);
 		createEReference(childEClass, CHILD__REFERENCE_LIST);
@@ -1076,6 +1086,7 @@ public class TestmodelPackageImpl extends EPackageImpl implements TestmodelPacka
 		initEReference(getTestModel_ReferenceTestContainer(), this.getReferenceTestContainer(), null, "referenceTestContainer", null, 0, -1, TestModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestModel_AttributeTest(), this.getAttributeTestContainer(), null, "attributeTest", null, 0, -1, TestModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestModel_NameAttributeTest(), this.getNameAttributeContainer(), null, "nameAttributeTest", null, 0, -1, TestModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestModel_Sub(), theTestsubmodelPackage.getTestInnerModel(), null, "sub", null, 0, 1, TestModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(childEClass, Child.class, "Child", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getChild_ReferenceList(), this.getSingleRequired(), null, "referenceList", null, 0, -1, Child.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

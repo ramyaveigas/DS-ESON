@@ -27,6 +27,7 @@ import testmodel.SingleOptional;
 import testmodel.SingleRequired;
 import testmodel.TestModel;
 import testmodel.TestmodelPackage;
+import testmodel.testsubmodel.TestInnerModel;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +46,7 @@ import testmodel.TestmodelPackage;
  *   <li>{@link testmodel.impl.TestModelImpl#getReferenceTestContainer <em>Reference Test Container</em>}</li>
  *   <li>{@link testmodel.impl.TestModelImpl#getAttributeTest <em>Attribute Test</em>}</li>
  *   <li>{@link testmodel.impl.TestModelImpl#getNameAttributeTest <em>Name Attribute Test</em>}</li>
+ *   <li>{@link testmodel.impl.TestModelImpl#getSub <em>Sub</em>}</li>
  * </ul>
  *
  * @generated
@@ -149,6 +151,16 @@ public class TestModelImpl extends EObjectImpl implements TestModel {
 	 * @ordered
 	 */
 	protected EList<NameAttributeContainer> nameAttributeTest;
+
+	/**
+	 * The cached value of the '{@link #getSub() <em>Sub</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSub()
+	 * @generated
+	 * @ordered
+	 */
+	protected TestInnerModel sub;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -410,6 +422,49 @@ public class TestModelImpl extends EObjectImpl implements TestModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TestInnerModel getSub() {
+		return sub;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetSub(TestInnerModel newSub, NotificationChain msgs) {
+		TestInnerModel oldSub = sub;
+		sub = newSub;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TestmodelPackage.TEST_MODEL__SUB, oldSub, newSub);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSub(TestInnerModel newSub) {
+		if (newSub != sub) {
+			NotificationChain msgs = null;
+			if (sub != null)
+				msgs = ((InternalEObject)sub).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TestmodelPackage.TEST_MODEL__SUB, null, msgs);
+			if (newSub != null)
+				msgs = ((InternalEObject)newSub).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TestmodelPackage.TEST_MODEL__SUB, null, msgs);
+			msgs = basicSetSub(newSub, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TestmodelPackage.TEST_MODEL__SUB, newSub, newSub));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -427,6 +482,8 @@ public class TestModelImpl extends EObjectImpl implements TestModel {
 				return ((InternalEList<?>)getAttributeTest()).basicRemove(otherEnd, msgs);
 			case TestmodelPackage.TEST_MODEL__NAME_ATTRIBUTE_TEST:
 				return ((InternalEList<?>)getNameAttributeTest()).basicRemove(otherEnd, msgs);
+			case TestmodelPackage.TEST_MODEL__SUB:
+				return basicSetSub(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -458,6 +515,8 @@ public class TestModelImpl extends EObjectImpl implements TestModel {
 				return getAttributeTest();
 			case TestmodelPackage.TEST_MODEL__NAME_ATTRIBUTE_TEST:
 				return getNameAttributeTest();
+			case TestmodelPackage.TEST_MODEL__SUB:
+				return getSub();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -502,6 +561,9 @@ public class TestModelImpl extends EObjectImpl implements TestModel {
 				getNameAttributeTest().clear();
 				getNameAttributeTest().addAll((Collection<? extends NameAttributeContainer>)newValue);
 				return;
+			case TestmodelPackage.TEST_MODEL__SUB:
+				setSub((TestInnerModel)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -541,6 +603,9 @@ public class TestModelImpl extends EObjectImpl implements TestModel {
 			case TestmodelPackage.TEST_MODEL__NAME_ATTRIBUTE_TEST:
 				getNameAttributeTest().clear();
 				return;
+			case TestmodelPackage.TEST_MODEL__SUB:
+				setSub((TestInnerModel)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -571,6 +636,8 @@ public class TestModelImpl extends EObjectImpl implements TestModel {
 				return attributeTest != null && !attributeTest.isEmpty();
 			case TestmodelPackage.TEST_MODEL__NAME_ATTRIBUTE_TEST:
 				return nameAttributeTest != null && !nameAttributeTest.isEmpty();
+			case TestmodelPackage.TEST_MODEL__SUB:
+				return sub != null;
 		}
 		return super.eIsSet(featureID);
 	}
