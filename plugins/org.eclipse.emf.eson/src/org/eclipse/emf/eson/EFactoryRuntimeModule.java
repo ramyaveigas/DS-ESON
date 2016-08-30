@@ -144,4 +144,9 @@ public class EFactoryRuntimeModule extends AbstractEFactoryRuntimeModule {
 	public Class<? extends org.eclipse.xtext.resource.containers.IAllContainersState.Provider> bindIAllContainersState$Provider() {
 		return FasterResourceSetBasedAllContainersStateProvider.class;
 	}
+/*
+	public Class<? extends IQualifiedNameConverter> bindIQualifiedNameConverter() {
+		return ExtendedQualifiedNameConverter.class;
+	}
+*/
 }
