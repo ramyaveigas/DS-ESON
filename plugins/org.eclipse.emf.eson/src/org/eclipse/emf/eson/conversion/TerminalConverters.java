@@ -35,10 +35,10 @@ public class TerminalConverters extends DefaultTerminalConverters {
 	public IValueConverter<String> StringOrQualifiedNameWithWildcard() {
 		return stringOrQualifiedNameWithWildcardValueConverter;
 	}
-/*
+
 	@ValueConverter(rule = "StringOrQualifiedName")
 	public IValueConverter<String> StringOrQualifiedName() {
 		return stringOrQualifiedNameValueConverter;
 	}
-*/
+
 }
