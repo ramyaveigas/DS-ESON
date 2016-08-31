@@ -25,9 +25,16 @@ public class TerminalConverters extends DefaultTerminalConverters {
 	@Inject
 	private DATEValueConverter dateValueConverter;
 	
+	@Inject
+	protected StringOrQualifiedNameValueConverter stringOrQualifiedNameValueConverter;
+	
 	@ValueConverter(rule = "Date")
 	public IValueConverter<Date> Date() {
 		return dateValueConverter;
 	}
-	
+
+	@ValueConverter(rule = "StringOrQualifiedName")
+	public IValueConverter<String> StringOrQualifiedName() {
+		return stringOrQualifiedNameValueConverter;
+	}
 }

@@ -14,6 +14,7 @@ package org.eclipse.emf.eson;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.eson.conversion.DATEValueConverter;
+import org.eclipse.emf.eson.conversion.ExtendedQualifiedNameConverter;
 import org.eclipse.emf.eson.conversion.TerminalConverters;
 import org.eclipse.emf.eson.generators.DelegatingGenerator;
 import org.eclipse.emf.eson.resource.EFactoryDerivedStateComputer;
@@ -31,6 +32,7 @@ import org.eclipse.emf.eson.validation.ESONLinkingDiagnosticMessageProvider;
 import org.eclipse.emf.eson.xtextbackpatch.FasterResourceSetBasedAllContainersStateProvider;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.linking.ILinkingDiagnosticMessageProvider;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.parser.IEncodingProvider;
 import org.eclipse.xtext.parser.antlr.IReferableElementsUnloader;
@@ -102,7 +104,7 @@ public class EFactoryRuntimeModule extends AbstractEFactoryRuntimeModule {
 	public Class<? extends IEPackageScopeProvider> bindIEPackageScopeProvider() {
 		return EPackageScopeProvider.class;
 	}
-
+	
 	public Class<? extends org.eclipse.xtext.resource.IResourceDescription.Manager> bindIResourceDescription$Manager() {
 		return org.eclipse.xtext.resource.DerivedStateAwareResourceDescriptionManager.class;
 	}
@@ -142,5 +144,9 @@ public class EFactoryRuntimeModule extends AbstractEFactoryRuntimeModule {
 	@Override // TODO Remove once ESON is migrated to support only Xtext 2.9.0 and no 2.8.x anymore
 	public Class<? extends org.eclipse.xtext.resource.containers.IAllContainersState.Provider> bindIAllContainersState$Provider() {
 		return FasterResourceSetBasedAllContainersStateProvider.class;
+	}
+
+	public Class<? extends IQualifiedNameConverter> bindIQualifiedNameConverter() {
+		return ExtendedQualifiedNameConverter.class;
 	}
 }
