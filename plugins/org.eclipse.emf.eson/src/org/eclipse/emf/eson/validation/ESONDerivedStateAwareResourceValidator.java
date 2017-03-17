@@ -37,7 +37,7 @@ public class ESONDerivedStateAwareResourceValidator extends DerivedStateAwareRes
 			return Collections.emptyList();
 		
 		if (ESONResourceValidationUtils.isValidationDisabled(resource.getURI())) {
-			//return Collections.emptyList();
+			return Collections.emptyList();
 		}
 		
 		return super.validate(resource, mode, monitor);
