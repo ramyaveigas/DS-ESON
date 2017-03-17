@@ -26,6 +26,7 @@ import org.eclipse.emf.eson.scoping.EFactoryQualifiedNameProvider;
 import org.eclipse.emf.eson.scoping.ESONLinkingService;
 import org.eclipse.emf.eson.scoping.ExtendedImportedNamespaceAwareLocalScopeProvider;
 import org.eclipse.emf.eson.scoping.WarningErrorHandlerWithoutNoSuchMethodException;
+import org.eclipse.emf.eson.validation.ESONDerivedStateAwareResourceValidator;
 import org.eclipse.emf.eson.validation.ESONDiagnosticConverter;
 import org.eclipse.emf.eson.validation.ESONLinkingDiagnosticMessageProvider;
 import org.eclipse.emf.eson.xtextbackpatch.FasterResourceSetBasedAllContainersStateProvider;
@@ -105,9 +106,8 @@ public class EFactoryRuntimeModule extends AbstractEFactoryRuntimeModule {
 		return org.eclipse.xtext.resource.DerivedStateAwareResourceDescriptionManager.class;
 	}
 	
-	@SuppressWarnings("restriction")
 	public Class<? extends IResourceValidator> bindIResourceValidator() {
-		return org.eclipse.xtext.xbase.annotations.validation.DerivedStateAwareResourceValidator.class;
+		return ESONDerivedStateAwareResourceValidator.class;
 	}
 	
 	public Class<? extends IGenerator> bindIGenerator() {
