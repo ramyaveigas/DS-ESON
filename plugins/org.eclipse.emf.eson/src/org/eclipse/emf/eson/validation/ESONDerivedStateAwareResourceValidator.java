@@ -1,18 +1,14 @@
-/**
- * <copyright>
- *
- * Copyright (c) 2014 Michael Vorburger and others.
- * All rights reserved.   This program and the accompanying materials
+/*
+ * #%L
+ * org.eclipse.emf.eson
+ * %%
+ * Copyright (C) 2017 Michael Vorburger and others.
+ * %%
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors: 
- *   Sebastian Benz - Initial API and implementation
- *
- * </copyright>
- *
- * 
+ * #L%
  */
 package org.eclipse.emf.eson.validation;
 
@@ -27,6 +23,11 @@ import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.Issue;
 import org.eclipse.xtext.xbase.annotations.validation.DerivedStateAwareResourceValidator;
 
+/**
+ * Check the resource need to be validated or not depending on its location in the workspace,
+ * 
+ * @author atripod
+ */
 @SuppressWarnings("restriction")
 public class ESONDerivedStateAwareResourceValidator extends DerivedStateAwareResourceValidator {
 
@@ -49,8 +50,7 @@ public class ESONDerivedStateAwareResourceValidator extends DerivedStateAwareRes
 			return;
 
 		if (ESONResourceValidationUtils.isValidationDisabled(resource.getURI()))
-			return
-					;
+			return;
 		
 		super.validate(resource, mode, monitor, acceptor);
 	}
