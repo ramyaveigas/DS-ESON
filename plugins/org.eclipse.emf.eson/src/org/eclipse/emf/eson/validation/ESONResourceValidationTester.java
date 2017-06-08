@@ -44,7 +44,7 @@ public interface ESONResourceValidationTester {
 			new ESONResourceValidationTester() {
 				@Override
 				public boolean isValidationDisabled(URI uri) {
-					return true;
+					return false;
 				}
 			};
 	
