@@ -12,30 +12,76 @@
  */
 package org.eclipse.emf.eson.validation;
 
+import org.apache.log4j.Logger;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 
 /**
- * DS-11537: first implementation with hardcoded folder. Later we'll
- * add an extension point to determine if a resource should be validated
- * or not depending on its location in the project models
+ * Utility class that verifies if the validation of a resource specified by its
+ * uri is disabled or not. The default implementation always accept the
+ * validation.
+ * 
+ * <p>
+ * A Specific implementation of the interface
+ * {@code ESONResourceValidationTester} must be registered with the extension
+ * point <tt>org.eclipse.emf.eson.validation</tt>.
+ * 
+ * <p>
+ * Only one instance of the extension point is supported for now.
  * 
  * @author atripod
  */
-public final class ESONResourceValidationUtils {
+public class ESONResourceValidationUtils {
 
-    private static String CORE_FOLDER = "core";
-    
-    public static boolean isValidationDisabled(URI uri) {
-        
-        String[] segments = uri.segments();
-        if (segments.length < 3) {
-            // invalid model uri (this could happens in some unit tests)
-            return false;
-        }
-        
-        boolean validationDisabled = uri.segment(2).equals(CORE_FOLDER);
+	private static Logger logger = Logger.getLogger(ESONResourceValidationUtils.class);
 
-        return validationDisabled;
-    }
+	private static String EXTENSION_POINT = "org.eclipse.emf.eson.validation";
+
+	private static ESONResourceValidationUtils _instance = new ESONResourceValidationUtils();
+
+	private ESONResourceValidationTester validationTester;
+
+	private ESONResourceValidationUtils() {
+		loadValidationTester();
+	}
+
+	private void loadValidationTester() {
+
+		IConfigurationElement[] config = Platform.getExtensionRegistry()
+				.getConfigurationElementsFor(EXTENSION_POINT);
+
+		if (config.length > 0) {
+			IConfigurationElement element = config[0];
+			try {
+				validationTester = (ESONResourceValidationTester) element
+						.createExecutableExtension("class");
+			} catch (CoreException ex) {
+				logger.error(
+						"A ESONResourceValidationTester cannot be instantiated, please check extension point: {"
+								+ EXTENSION_POINT + "}", ex);
+			}
+		}
+
+		if (validationTester == null) {
+			validationTester = ESONResourceValidationTester.defaultValidationTester;
+			logger.warn("No custom ESONResourceValidationTester defined, so the default implementation will be used");
+		}
+
+	}
+
+	/**
+	 * Returns <tt>true</tt> if the validation should be disabled for the
+	 * resource identified by the specified uri.
+	 * 
+	 * @param uri
+	 *            the resource uri to be checked
+	 * @return <tt>true</tt> if the validation should be disabled for the
+	 *         resource identified by the specified uri
+	 */
+	public static boolean isValidationDisabled(URI uri) {
+		return _instance.validationTester.isValidationDisabled(uri);
+	}
 
 }
