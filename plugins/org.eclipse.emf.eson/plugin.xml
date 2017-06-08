@@ -3,6 +3,7 @@
 
 <plugin>
    <extension-point id="generator" name="EMF ESON Generator" schema="schema/generator.exsd"/>
+   <extension-point id="validation" name="EMF ESON Validation" schema="schema/validation.exsd"/>
 
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
