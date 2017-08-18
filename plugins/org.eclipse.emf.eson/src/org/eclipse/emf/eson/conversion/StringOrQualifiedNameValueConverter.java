@@ -44,7 +44,7 @@ public class StringOrQualifiedNameValueConverter extends AbstractNullSafeConvert
 	}
 
 	private static boolean validId(String id) {
-		if (id.startsWith(".") || id.endsWith(".")) {
+		if (id.startsWith(".") || id.endsWith(".") || id.contains(".NULL") || id.contains("NULL.")) {
 			return false;
 		}
 
